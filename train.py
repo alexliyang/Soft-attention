@@ -39,9 +39,11 @@ def generator_train(batch_size,valid=False):
 				x_train = np.zeros((batch_size,100,100))
 				y_train = np.zeros((batch_size,))
 x_input = Input(shape=(100,100,1))
+##soft attention network
 soft = Conv2D(32, kernel_size=(3, 3),activation='relu',padding="same")(x_input)
 soft = Conv2D(64, (3, 3), activation='relu',padding="same")(soft)
 soft = Conv2D(1, (3, 3), activation='relu',padding="same")(soft)
+# multiply soft attention with input
 x_mul = keras.layers.Multiply()([x_input,soft])
 #conv = Conv2D(32, kernel_size=(3, 3),activation='relu')(x_mul)
 #conv = Conv2D(64, (3, 3), activation='relu')(conv)
